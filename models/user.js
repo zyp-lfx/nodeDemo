@@ -5,11 +5,13 @@ module.exports = {
     create: function create (user) {
         return User.create(user).exec()
     },
+    updatePostById: function updatePostById (postId, data) {
+        return Post.update({ _id: postId }, { $set: data }).exec()
+    },
    // 通过用户名获取用户信息
-    getUserByName: function getUserByName (name) {
+    getUserPhone: function getUserPhone (phone) {
         return User
-            .findOne({ phone: name })
-            .addCreatedAt()
+            .findOne({ phone: phone })
             .exec()
     }
 }
