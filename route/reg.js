@@ -37,11 +37,12 @@ router.post('/',function(req,res){
     }
     console.log(data.password)
     data.password = md5(data.password)
-
+    data.createTime = new Date().getTime()
     UserModel.create(data).then(resdata=>{
-        data = resdata.ops[0]
+        // data = resdata.ops[0]
         console.log(data)
         delete data.password
+        delete data.repassword
         var relust ={
             code:1,
             msg:'注册成功',

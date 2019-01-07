@@ -4,6 +4,7 @@ module.exports = function (app) {
     })
 
     app.use('/user', require('./user'))
+    app.use('/adminUser', require('./adminUser'))
     app.use('/login', require('./login'))
     app.use('/reg', require('./reg'))
 }

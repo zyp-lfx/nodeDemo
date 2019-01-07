@@ -4,7 +4,7 @@ const UserModel = require('../models/user')
 const md5 = require('md5')
 
 router.get('/',function(req,res){
-    var phone=req.query.tel
+    var phone=req.query.phone
     UserModel.getUserPhone(phone).then(resdata=>{
         console.log(resdata)
         var relust ={
@@ -20,6 +20,7 @@ router.post('/',function(req,res){
     var password=req.body.password
     UserModel.getUserPhone(phone).then(resdata=>{
         var relust={}
+        console.log(resdata)
         if(!resdata){
             relust ={
                 code:9,

@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const UserModel = require('../models/user')
-const md5 = require('md5')
+const AdminModel = require('../models/admin')
 router.get('/',function(req,res){
     res.send({
         code:1,
@@ -9,16 +8,15 @@ router.get('/',function(req,res){
     })
     console.log(req.query)
 })
-router.get('/byPhone',function(req,res){
-    var phone=req.query.phone
-    console.log(phone)
-
-    UserModel.getUserPhone(phone).then(resdata=>{
+router.post('/add',function(req,res){
+    let data=req.body
+    console.log(data)
+    data.createTime = new Date().getTime()
+    AdminModel.create(data).then(resdata=>{
         console.log(resdata)
         var relust ={
             code:1,
-            msg:'查询成功',
-            data:resdata
+            msg:'创建成功',
         }
         res.send(relust)
     })
@@ -32,7 +30,7 @@ router.get('/byId',function(req,res){
         rows:rows,
         pages:pages
     }
-    UserModel.getUserById(data,function (data) {
+    AdminModel.getAdminuserId(data,function (data) {
         console.log(data)
         var relust ={
             code:1,
@@ -43,3 +41,4 @@ router.get('/byId',function(req,res){
     })
 })
 module.exports = router
+
