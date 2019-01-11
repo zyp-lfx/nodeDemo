@@ -10,10 +10,8 @@ router.get('/',function(req,res){
 })
 router.post('/add',function(req,res){
     let data=req.body
-    console.log(data)
     data.createTime = new Date().getTime()
     AdminModel.create(data).then(resdata=>{
-        console.log(resdata)
         var relust ={
             code:1,
             msg:'创建成功',
@@ -31,7 +29,6 @@ router.get('/byId',function(req,res){
         pages:pages
     }
     AdminModel.getAdminuserId(data,function (data) {
-        console.log(data)
         var relust ={
             code:1,
             msg:'查询成功',

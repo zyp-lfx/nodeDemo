@@ -11,7 +11,6 @@ router.get('/',function(req,res){
 })
 router.get('/byPhone',function(req,res){
     var phone=req.query.phone
-    console.log(phone)
 
     UserModel.getUserPhone(phone).then(resdata=>{
         console.log(resdata)
