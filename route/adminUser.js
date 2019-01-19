@@ -37,5 +37,15 @@ router.get('/byId',function(req,res){
         res.send(relust)
     })
 })
+router.post('/uptateAdminById',function(req,res){
+    var data = req.body
+    var relust ={
+        code:1,
+        msg:'更新成功',
+    }
+    AdminModel.updatePostById(data.id,data).then(resData=>{
+        res.send(relust)
+    })
+})
 module.exports = router
 

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const MenuModel = require('../models/menu')
+const AdminModel = require('../models/admin')
 router.get('/',function(req,res){
     res.send({
         code:1,
@@ -27,18 +28,27 @@ function TreeData(data,addAttr){
     }
 }
 function toTree(data,to,from,attr){
-    var result =data
+    var result ={
+
+    }
+    result.tree=data
+    if(attr){
+        result.checkTree=[]
+    }
     console.log(attr)
-    result.forEach(res=>{
+    result.tree.forEach(res=>{
         if(attr){
-            if(res.showId&&res.showId.indexOf(attr)>-1){
+            if(attr.toString().indexOf(res[from])>-1){
+                var treeNode = Object.assign({},res)
+                delete treeNode.children
+                result.checkTree.push(treeNode)
                 res.show=true
             }else{
                 res.show=false
             }
         }
         if(res[to]){
-            result.forEach(item=>{
+            result.tree.forEach(item=>{
                 if(res[to]==item[from]){
                     if(!item.children){
                         item.children=[]
@@ -48,7 +58,7 @@ function toTree(data,to,from,attr){
             })
         }
     })
-    result=result.filter(ele => !ele[to])
+    result.tree=result.tree.filter(ele => !ele[to])
     return result
 }
 router.get('/getMenu',function (req,res) {
@@ -63,17 +73,21 @@ router.get('/getMenu',function (req,res) {
         res.send(reslut)
     })
 })
-router.get('/getMenuById',function (req,res) {
+router.get('/getMenuByAdminId',function (req,res) {
     var showId= req.query.id
     MenuModel.getMenu({},function (data) {
-        var datas = JSON.parse(JSON.stringify(data))
-        // var datas = data
-        var reslut ={
-            code:1,
-            data:toTree(datas,'attachId','_id',showId),
-            msg:'查询成功'
-        }
-        res.send(reslut)
+        AdminModel.getAdminuserId({id:showId},function (resdata) {
+            var datas = JSON.parse(JSON.stringify(data))
+            // var datas = data
+            var reslut ={
+                code:1,
+                data:toTree(datas,'attachId','_id',resdata.treeId),
+                msg:'查询成功'
+            }
+            res.send(reslut)
+            // res.send(relust)
+        })
+
     })
 })
 module.exports = router
