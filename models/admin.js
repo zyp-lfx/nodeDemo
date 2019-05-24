@@ -20,7 +20,7 @@ module.exports = {
             Adminuser.findOne({ _id: data.id }).exec().then(res=>{cb(res)})
         }else if(data.rows&&data.pages){
             // Adminuser.find({}).limit(data.rows).skip((data.pages-1)*data.rows)
-            Adminuser.find({},{treeId:0}).exec(function (err,data) {
+            Adminuser.find({}).exec(function (err,data) {
                 if(err) cb(err)
                 else{
                     Adminuser.count().exec().then(count=>{
@@ -33,7 +33,7 @@ module.exports = {
                 }
             })
         }else{
-            Adminuser.find({},{treeId:0}).exec(function (err,data) {
+            Adminuser.find({}).exec(function (err,data) {
                 if(err) cb(err)
                 else{
                     Adminuser.count().exec().then(count=>{

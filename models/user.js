@@ -6,7 +6,7 @@ module.exports = {
         return User.create(user)
     },
     updatePostById: function updatePostById (postId, data) {
-        return Post.update({ _id: postId }, { $set: data }).exec()
+        return User.update({ _id: postId }, { $set: data }).exec()
     },
    // 通过用户名获取用户信息
     getUserById: function getUserById (data,cb) {

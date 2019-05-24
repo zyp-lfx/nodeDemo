@@ -51,6 +51,12 @@ router.get('/byPhone',function(req,res){
         res.send(relust)
     })
 })
+router.post('/updataById',function (req,res) {
+    var data=req.body
+    UserModel.updatePostById(data.id,data).then(resdata=>{
+        res.send({code:1,relust:resdata})
+    })
+})
 router.get('/byId',function(req,res){
     var id=req.query.id
     let data={

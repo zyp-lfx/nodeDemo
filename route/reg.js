@@ -40,6 +40,7 @@ router.post('/',function(req,res){
     data.createTime = new Date().getTime()
     UserModel.create(data).then(resdata=>{
         // data = resdata.ops[0]
+
         console.log(data)
         delete data.password
         delete data.repassword
