@@ -25,6 +25,7 @@ app.use(session({
     }
 
 }))
+app.use('/upload', express.static(path.join(__dirname, 'upload')));
 app.listen(config.port, function () {
     console.log(`listening on port ${config.port}`)
     console.log(config.mongodb)

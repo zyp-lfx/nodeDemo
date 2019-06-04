@@ -16,5 +16,21 @@ router.post('/addGoods',function (req,res) {
         })
     })
 })
+router.post('/getGoodsList',function (req,res) {
+    var data = req.body
+    // data.createTime = new Date().getTime()
+    // console.log(data.imgList)
+
+    // data.imgList=data.imgList.join(' ');
+    console.log(data)
+    Goods.getGoods(data,function(result){
+        var relustData ={
+            code:1,
+            msg:'查询成功',
+            data:result
+        }
+        res.send(relustData)
+    })
+})
 module.exports = router
 
