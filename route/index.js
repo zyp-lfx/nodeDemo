@@ -10,4 +10,5 @@ module.exports = function (app) {
     app.use('/menu', require('./menu'))
     app.use('/goods', require('./goods'))
     app.use('/imgUpload', require('./imgUpload'))
+    app.use('/attr', require('./attr'))
 }
