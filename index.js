@@ -30,3 +30,4 @@ app.listen(config.port, function () {
     console.log(`listening on port ${config.port}`)
     console.log(config.mongodb)
 })
+
