@@ -11,4 +11,5 @@ module.exports = function (app) {
     app.use('/goods', require('./goods'))
     app.use('/imgUpload', require('./imgUpload'))
     app.use('/attr', require('./attr'))
+    app.use('/goodClass', require('./goodClass'))
 }

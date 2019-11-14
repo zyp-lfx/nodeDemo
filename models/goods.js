@@ -5,7 +5,6 @@ module.exports={
     },
     getGoods: function getGoods (data,cb) {
         var req={
-
         }
         if(data.name){
             req.name=data.name
